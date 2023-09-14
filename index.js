@@ -1,8 +1,8 @@
 const express = require('express');
 var http = require("http");
-
+require('dotenv').config()
 const app = express();
-// const port =  3000;
+const port = process.env.PORT || 8080;;
 var server = http.createServer(app);
 var io = require("socket.io")(server);
 //middleware
@@ -26,7 +26,7 @@ io.on('connection',(socket)=>{
 app.get("/", (req, res) => {
     res.send("Hello world");
   });
-server.listen("0.0.0.0",()=>{
+server.listen(port,()=>{
     
     console.log('server started')
 })
